@@ -1,0 +1,41 @@
+.Body{
+    height: 600px;
+    background-color: aqua;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content:space-evenly; */
+}
+h2{
+    color: white;
+}
+form{
+    width:60%;
+    height:80%;
+    background-color:rgba(0, 204, 255, 0.521);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.input_feild_1st_part{
+    width:200px
+}
+
+.input_feild_div{
+    width: 500px;
+    display: flex;
+    padding-bottom: 20px;
+    /* justify-content: space-between; */
+}
+
+.button{
+    width: 150px;
+    height: 30px;
+    background-color: rgb(95, 243, 95);
+}
+
+input{
+    width: 250px;
+}
