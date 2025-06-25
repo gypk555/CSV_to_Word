@@ -13,15 +13,18 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/convert', upload.single('csvFile'), (req, res) => {
+    console.log("request recieved 1");
     const filePath = req.file.path;
     const columnMapping = JSON.parse(req.body.columnMapping);
     const mergeColumns = JSON.parse(req.body.mergeColumns);
+    console.log("request recieved 2");
     const rows = [];
     fs.createReadStream(filePath)
         .pipe(csv())
         .on('data', data => rows.push(data))
         .on('end', async () => {
     // Apply merge
+            console.log("request recieved 3");
     if (mergeColumns && mergeColumns.length === 3) {
     const [col1, col2, mergedCol] = mergeColumns;
 
@@ -29,13 +32,13 @@ app.post('/convert', upload.single('csvFile'), (req, res) => {
     rows.forEach(row => {
         row[mergedCol] = `${row[col1]} - ${row[col2]}`;
     });
-
+    console.log("request recieved 4");
     // 🔥 Add mergedCol to columnMapping if it's not already included
     if (!columnMapping[col1] && !columnMapping[col2] && !columnMapping[mergedCol]) {
         columnMapping[mergedCol] = mergedCol; // Default: use same name in Word
     }
 }
-
+console.log("request recieved 5");
 
     // Detect risk-related column (case insensitive)
     const severityKeys = Object.keys(columnMapping).filter(key =>
@@ -62,7 +65,7 @@ app.post('/convert', upload.single('csvFile'), (req, res) => {
         rows.length = 0;
         rows.push(...filteredRows); // Replace with filtered + sorted
     }
-
+console.log("request recieved 6");
     // Insert serial number and build final rows
     const mappedKeys = Object.keys(columnMapping);
     const wordRows = rows.map((row, index) => {
