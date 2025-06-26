@@ -21,7 +21,7 @@ function App() {
       : [];
     formData.append('columnMapping', JSON.stringify(mapping));
     formData.append('mergeColumns', JSON.stringify(mergeData));
-    const response = await axios.post('https://csv-to-word-1.onrender.com:5000/convert', formData, {
+    const response = await axios.post('https://csv-to-word-1.onrender.com/convert', formData, {
       responseType: 'blob'
     });
 
